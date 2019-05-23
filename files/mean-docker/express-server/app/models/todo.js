@@ -1,16 +1,20 @@
 var mongoose = require('mongoose');
 
-// Define the schema
+// Define the schema 数据库格式
 module.exports = mongoose.model('Todo', {
-    text: {
+    username: {
         type: String,
         default: ''
-    },
+    }, //用户名
 
-    value: {
+    balance: {
         type: String,
         default: ''
-    }
+    }  //存款余额
 
 
+    //密码
+    //phone
+    //理财产品
+    //欠款金额
 });

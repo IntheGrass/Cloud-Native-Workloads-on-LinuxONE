@@ -26,8 +26,8 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         Todo.create({
-            text: req.body.text,
-            value: req.body.value,
+            username: req.body.username,
+            balance: req.body.balance,
             done: false
         }, function (err, todo) {
             if (err)
@@ -51,6 +51,21 @@ module.exports = function (app) {
         });
     });
 
+    //更新一个todo的存款
+    app.put('/api/todos:todo_id', function(req,res){
+        Todo.update({
+            _id: req.params.todo_id
+        },
+        {
+            //更新的存款数字
+            balance: req.body.updateBalance
+        },function(err,todo){
+            if (err)
+                res.send(err);
+
+            getTodos(res);
+        });
+    });
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

@@ -54,4 +54,17 @@ angular.module('todoController', [])
 					$scope.todos = data; // assign our new list of todos
 				});
 		};
+
+
+		//更新数据库
+		$scope.updateBalance = function(id) {
+			$scope.loading = true;
+			
+			Todos.update(id,$scope.formData)
+				.success(function(data){
+					$scope.loading = false;
+					$scope.formData = {}; // clear the form so our user is ready to enter another
+					$scope.todos = data; // assign our new list of todos
+				})
+		};
 	}]);

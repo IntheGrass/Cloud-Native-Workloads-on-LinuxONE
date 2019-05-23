@@ -36,17 +36,23 @@
 			<h1>Hi let us make an app for banks<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
-		<!-- TODO LIST -->
+		<!-- TODO LIST 显示框-->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.username }} {{todo.balance}}
+
+						<!--用于测试更新函数的范例-->
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
+						ng-model="formData.updatedBalance"> <!--更新存款的输入框，formData.updatedBalance表示即将更新的数字-->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="updateBalance(todo._id)">更新用户存款</button>
 					</label>
 				</div>
 
+				<!--加载圈-->
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
@@ -54,18 +60,20 @@
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
+		<!-- FORM TO CREATE TODOS  输入框--> 
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
+						ng-model="formData.username">
 
 
 
-						<input type="text" class="form-control " placeholder="todo's go here" ng-model="formData.value">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
+						ng-model="formData.balance">
 
 
 					</div>
@@ -75,6 +83,7 @@
 				</form>
 			</div>
 		</div>
+		<!--更新实例-->
 		<div class="text-center text-muted">
 			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 		</div>
