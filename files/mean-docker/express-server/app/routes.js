@@ -58,7 +58,7 @@ module.exports = function (app) {
         },
         {
             //更新的存款数字
-            balance: req.body.updateBalance
+            balance: req.body.updatedBalance
         },function(err,todo){
             if (err)
                 res.send(err);
