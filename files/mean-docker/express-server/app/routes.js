@@ -54,11 +54,12 @@ module.exports = function (app) {
     //更新一个todo的存款
     app.put('/api/todos:todo_id', function(req,res){
         Todo.update({
-            _id: req.params.todo_id
+            //_id: req.params.todo_id
+            username: 'abc'
         },
         {
             //更新的存款数字
-            balance: req.body.updatedBalance
+            balance: 'def'
         },function(err,todo){
             if (err)
                 res.send(err);
