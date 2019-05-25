@@ -59,7 +59,7 @@ angular.module('todoController', [])
 		$scope.updateBalance2 = function(id) {
 			$scope.loading = true;
 			Todos.delete(id);
-			Todos.create($scope.formData)
+			Todos.create($scope.updateDate)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
@@ -72,7 +72,7 @@ angular.module('todoController', [])
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
 			
-			Todos.update(id,$scope.formData)
+			Todos.update(id,$scope.updateDate)
 				.success(function(data){
 					$scope.loading = false;
 					$scope.formData = {}; // clear the form so our user is ready to enter another
