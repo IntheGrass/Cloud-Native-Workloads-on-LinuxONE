@@ -51,8 +51,9 @@ angular.module('todoController', [])
 				});
 		};
 		//通过删除的方法更新用户存款
-		$scope.updateBalance2 = function(id) {
+		$scope.updateBalance2 = function(id,name) {
 			$scope.loading = true;
+			updateData.username = name;
 			Todos.delete(id)
 				.success(function(data) {
 					$scope.todos = data; // assign our new list of todos
