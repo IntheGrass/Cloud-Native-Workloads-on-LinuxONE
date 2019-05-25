@@ -58,8 +58,11 @@ angular.module('todoController', [])
 		//通过删除的方法更新用户存款
 		$scope.updateBalance2 = function(id) {
 			$scope.loading = true;
-			Todos.delete(id);
-			Todos.create($scope.updateDate)
+			Todos.delete(id)
+				.success(function(data) {
+					$scope.todos = data; // assign our new list of todos
+				});
+			Todos.create($scope.updateData)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
