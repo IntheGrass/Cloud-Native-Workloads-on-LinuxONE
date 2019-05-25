@@ -4,7 +4,7 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.loading = true;
-
+	
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -54,9 +54,20 @@ angular.module('todoController', [])
 					$scope.todos = data; // assign our new list of todos
 				});
 		};
-
+		//通过删除的方法更新用户存款
+		$scope.updateBalance = function(id) {
+			$scope.loading = true;
+			Todos.delete(id);
+			
+			Todos.create($scope.formData)
+				.success(function(data){
+					$scope.loading = false;
+					$scope.formData = {}; // clear the form so our user is ready to enter another
+					$scope.todos = data; // assign our new list of todos
+				});
+		};
 		
-		//更新用户存款
+		//更新用户存款(还没搞好)
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
 			
