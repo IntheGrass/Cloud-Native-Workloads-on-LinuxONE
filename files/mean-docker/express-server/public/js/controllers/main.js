@@ -55,8 +55,8 @@ angular.module('todoController', [])
 				});
 		};
 
-
-		//更新数据库
+		
+		//更新用户存款
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
 			
