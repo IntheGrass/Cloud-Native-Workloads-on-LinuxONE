@@ -8,8 +8,8 @@ module.exports = mongoose.model('Todo', {
     }, //用户名
 
     balance: {
-        type: String,
-        default: ''
+        type: Number,
+        default: 0
     }  //存款余额
 
 
