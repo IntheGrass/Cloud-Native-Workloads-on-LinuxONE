@@ -4,7 +4,7 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.updateData = {};
-		$scope.updateData.option = 'b';
+		$scope.updateData.option = 'a';
 		$scope.loading = true;
 	
 		// GET =====================================================================
@@ -71,7 +71,7 @@ angular.module('todoController', [])
 		//更新用户存款(没搞好)
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
-			$scope.updateDate.option = 'a';
+			//$scope.updateDate.option = 'a';
 			Todos.create($scope.updateDate)
 				.success(function(data){
 					$scope.loading = false;
