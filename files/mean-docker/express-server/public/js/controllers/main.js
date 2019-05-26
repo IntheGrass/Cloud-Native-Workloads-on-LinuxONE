@@ -71,8 +71,7 @@ angular.module('todoController', [])
 		//更新用户存款(没搞好)
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
-			//$scope.updateDate.option = 'a';
-			Todos.create($scope.updateDate)
+			Todos.update(id,$scope.updateDate)
 				.success(function(data){
 					$scope.loading = false;
 					$scope.formData = {}; // clear the form so our user is ready to enter another
