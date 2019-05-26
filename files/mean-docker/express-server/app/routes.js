@@ -26,9 +26,9 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         if(req.body.option == 'a'){
-            /*Todo.update({
+            Todo.update({
             //_id: req.params.todo_id
-            username: 'abc'
+            balance: 1000
             },
             {
                 //更新的存款数字
@@ -37,16 +37,6 @@ module.exports = function (app) {
                 if (err)
                     res.send(err);
 
-                getTodos(res);
-            });*/
-            Todo.update({
-                balance:100
-            },{
-                balance: 1000,
-                done: false
-            },function(err.todo){
-                if (err)
-                    res.send(err);
                 getTodos(res);
             });
         }
