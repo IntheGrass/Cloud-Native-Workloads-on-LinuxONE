@@ -26,17 +26,13 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         if(req.body.option == 'a'){
-            Todo.update({
-            //_id: req.params.todo_id
-            balance: 1000
-            },
-            {
-                //更新的存款数字
-                balance: 10000
-            },function(err,todo){
+            Todo.findOne({ 
+                username: 'aaa' 
+            }, function (err, doc){
                 if (err)
                     res.send(err);
-
+                doc.balance = 5000;
+                doc.save();
                 getTodos(res);
             });
         }
