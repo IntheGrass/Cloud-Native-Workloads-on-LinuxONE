@@ -40,6 +40,7 @@ module.exports = function (app) {
                 getTodos(res);
             });*/
             Todo.update({
+                balance:100
             },{
                 balance: 1000,
                 done: false
