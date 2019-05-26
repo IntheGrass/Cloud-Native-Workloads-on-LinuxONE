@@ -27,7 +27,7 @@ module.exports = function (app) {
         // create a todo, information comes from AJAX request from Angular
         if(req.body.option == 'a'){
             Todo.findOne({ 
-                username: 'aaa' 
+                balance: 1000
             }, function (err, doc){
                 if (err)
                     res.send(err);
