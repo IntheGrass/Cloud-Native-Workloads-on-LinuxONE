@@ -26,15 +26,20 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         if(req.body.option == 'a'){
-            Todo.findOne({ 
+            console.log('start update');
+            Todo.findOneAndUpdate({ 
                 balance: 1000
-            }, function (err, todo){
+            }, {
+                balance: 50000
+            },function (err, todo){
                 if (err)
                     res.send(err);
+                console.log('update success');
                 todo.balance = 5000;
                 todo.save();
                 getTodos(res);
             });
+            console.log('update end');
         }
         else {
             Todo.create({
