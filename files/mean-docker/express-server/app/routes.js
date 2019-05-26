@@ -63,22 +63,22 @@ module.exports = function (app) {
         }, function (err, todo) {
             if (err)
                 res.send(err);
-
-            getTodos(res);
+            console.log("update start");
+            Todo.update({
+                balance: 1000
+                },
+                {
+                    //更新的存款数字
+                    balance:50000
+                },function(err,todo){
+                    if (err)
+                        res.send(err);
+                    getTodos(res);
+                    console.log("update end");
+                });
+                getTodos(res);
         });
-        console.log("update start");
-        Todo.update({
-            _id: req.params.todo_id
-        },
-        {
-            //更新的存款数字
-            balance:50000
-        },function(err,todo){
-            if (err)
-                res.send(err);
-            getTodos(res);
-            console.log("update end");
-        });
+        
     });
     app.put('/api/todos/:todo_id', function (req, res) {
         Todo.remove({
