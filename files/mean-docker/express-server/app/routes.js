@@ -23,25 +23,7 @@ module.exports = function (app) {
 
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) {
-
         // create a todo, information comes from AJAX request from Angular
-        if(req.body.option == 'a'){
-            console.log('start update');
-            Todo.findOneAndUpdate({ 
-                balance: 1000
-            }, {
-                balance: 50000
-            },function (err, todo){
-                if (err)
-                    res.send(err);
-                console.log('update success');
-                todo.balance = 5000;
-                todo.save();
-                getTodos(res);
-            });
-            console.log('update end');
-        }
-        else {
             Todo.create({
                 username: req.body.username,
                 balance: req.body.balance,
@@ -53,7 +35,6 @@ module.exports = function (app) {
                 // get and return all the todos after you create another
                 getTodos(res);
             });
-        }
     });
 
     // delete a todo
