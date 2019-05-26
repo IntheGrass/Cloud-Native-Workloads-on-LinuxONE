@@ -58,15 +58,14 @@ module.exports = function (app) {
 
     // delete a todo
     app.delete('/api/todos/:todo_id', function (req, res) {
-        /*Todo.remove({
+        Todo.remove({
             _id: req.params.todo_id
         }, function (err, todo) {
             if (err)
                 res.send(err);
                 getTodos(res);
-        });*/
-        console.log("update start");
-        Todo.update({
+        });
+        /*Todo.update({
              balance: 1000
         },
         {
@@ -76,16 +75,18 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             getTodos(res);
-            console.log("update end");
-        });
+        });*/
     });
     app.put('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
+        Todo.update({
+             balance: 1000
+        },
+        {
+            //更新的存款数字
+            balance:50000
+        },function(err,todo){
             if (err)
                 res.send(err);
-
             getTodos(res);
         });
     });
