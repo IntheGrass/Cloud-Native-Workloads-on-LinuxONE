@@ -70,7 +70,7 @@ module.exports = function (app) {
 
     //更新一个todo的存款
     app.put('/api/todos:todo_id', function(req,res){
-        Todo.update({
+        /*Todo.update({
             _id: req.params.todo_id
         },
         {
@@ -80,6 +80,13 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
 
+            getTodos(res);
+        });*/
+         Todo.remove({
+            _id: req.params.todo_id
+        }, function (err, todo) {
+            if (err)
+                res.send(err);
             getTodos(res);
         });
     });
