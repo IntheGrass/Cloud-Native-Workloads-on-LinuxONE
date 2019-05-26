@@ -25,18 +25,34 @@ module.exports = function (app) {
     app.post('/api/todos', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            username: req.body.username,
-            balance: req.body.balance,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
+        if(req.body.option == 'a'){
+            Todo.update({
+            //_id: req.params.todo_id
+            username: 'abc'
+            },
+            {
+                //更新的存款数字
+                balance: 'def'
+            },function(err,todo){
+                if (err)
+                    res.send(err);
 
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
+                getTodos(res);
+            });
+        }
+        else {
+            Todo.create({
+                username: req.body.username,
+                balance: req.body.balance,
+                done: false
+            }, function (err, todo) {
+                if (err)
+                    res.send(err);
 
+                // get and return all the todos after you create another
+                getTodos(res);
+            });
+        }
     });
 
     // delete a todo
