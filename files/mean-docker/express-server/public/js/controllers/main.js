@@ -51,8 +51,21 @@ angular.module('todoController', [])
 					$scope.todos = data; // assign our new list of todos
 				});
 		};
-		//通过删除的方法更新用户存款
-		$scope.updateBalance2 = function(id,name) {
+		
+		//更新用户存款
+		$scope.updateBalance = function(id) {
+			$scope.loading = true;
+			Todos.update(id,$scope.updateData)
+				.success(function(data){
+					$scope.loading = false;
+					$scope.formData = {}; // clear the form so our user is ready to enter another
+					$scope.todos = data; // assign our new list of todos
+				});
+			$scope.loading = false;
+		};
+		
+		//通过删除的方法更新用户存款（没用了）
+		/*$scope.updateBalance2 = function(id,name) {
 			$scope.loading = true;
 			$scope.updateData.username = name;
 			Todos.delete(id)
@@ -66,17 +79,5 @@ angular.module('todoController', [])
 					$scope.formData = {}; // clear the form so our user is ready to enter another
 					$scope.todos = data; // assign our new list of todos
 				});
-		};
-		
-		//更新用户存款(没搞好)
-		$scope.updateBalance = function(id) {
-			$scope.loading = true;
-			Todos.update(id,$scope.updateData)
-				.success(function(data){
-					$scope.loading = false;
-					$scope.formData = {}; // clear the form so our user is ready to enter another
-					$scope.todos = data; // assign our new list of todos
-				});
-			$scope.loading = false;
-		};
+		};*/
 	}]);
