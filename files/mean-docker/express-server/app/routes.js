@@ -28,11 +28,11 @@ module.exports = function (app) {
         if(req.body.option == 'a'){
             Todo.findOne({ 
                 balance: 1000
-            }, function (err, doc){
+            }, function (err, todo){
                 if (err)
                     res.send(err);
-                doc.balance = 5000;
-                doc.save();
+                todo.balance = 5000;
+                todo.save();
                 getTodos(res);
             });
         }
