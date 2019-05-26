@@ -4,6 +4,7 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.updateData = {};
+		$scope.updateData.option = 'b';
 		$scope.loading = true;
 	
 		// GET =====================================================================
