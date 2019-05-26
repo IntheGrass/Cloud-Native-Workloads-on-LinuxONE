@@ -10,11 +10,20 @@ module.exports = mongoose.model('Todo', {
     balance: {
         type: Number,
         default: 0
-    }  //存款余额
+    },  //存款余额
 
-
-    //密码
+    password: {
+        type: String,
+        default: ''
+    }, //密码
+    
+    arrears: {
+        type: Number,
+        default: 0
+    } //欠款金额
+    
+    
     //phone
     //理财产品
-    //欠款金额
+   
 });
