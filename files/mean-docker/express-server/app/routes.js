@@ -79,7 +79,7 @@ module.exports = function (app) {
     });
     app.put('/api/todos/:todo_id', function (req, res) {
         Todo.update({
-             balance: 1000
+            _id: req.params.todo_id
         },
         {
             //更新的存款数字
