@@ -6,7 +6,7 @@ angular.module('todoController', [])
 		$scope.idLocation = 0;
 		$scope.createData = {};
 		$scope.landData = {};
-		$scope.showData = {};
+		$scope.showData = {username: 'Peter', balance: 0};
 		$scope.todos = [];
 		$scope.updateData = {};
 		$scope.loading = true;
