@@ -12,10 +12,10 @@ function getTodos(res) {
     });
 };
 
-function getLandUser(req,res){
+function getLandUser(tousername,topassword,res){
     Todo.findOne({
-        username: req.body.username,
-        password: '123456'
+        username: tousername,
+        password: topassword
     },function (err, todo){
         if (err) {
             res.send(err);
@@ -32,7 +32,7 @@ module.exports = function (app) {
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
         //getTodos(res);
-        getLandUser(req,res);
+        getLandUser(req.body.username,req.body.password,res);
     });
 
     // create todo and send back all todos after creation
