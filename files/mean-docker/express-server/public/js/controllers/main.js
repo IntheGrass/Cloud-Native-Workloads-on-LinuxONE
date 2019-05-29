@@ -27,7 +27,8 @@ angular.module('todoController', [])
 			// if form is empty, nothing will happen
 			if ($scope.createData.username != undefined && $scope.createData.password != undefined) {
 				$scope.loading = true;
-
+				//设置id序号
+				$scope.createData.id = $scope.todos.length;
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.createData)
 
@@ -58,9 +59,6 @@ angular.module('todoController', [])
 		//更新用户存款
 		$scope.updateBalance = function(id) {
 			$scope.loading = true;
-			//设置id序号
-			$scope.updateData.id = $scope.idLocation;
-			$scope.idLocation = $scope.idLocation + 1;
 			Todos.update(id,$scope.updateData)
 				.success(function(data){
 					$scope.loading = false;
