@@ -7,7 +7,7 @@ angular.module('todoController', [])
 		$scope.createData = {};
 		$scope.landData = {};
 		$scope.showData = {};
-
+		$scope.todos = [];
 		$scope.updateData = {};
 		$scope.loading = true;
 		// GET =====================================================================
