@@ -31,7 +31,7 @@ module.exports = function (app) {
     // get all todos
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
-        if (!req)
+        if (req)
         getTodos(res);
     });
 
