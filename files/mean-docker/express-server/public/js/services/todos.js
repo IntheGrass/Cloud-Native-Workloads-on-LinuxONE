@@ -16,7 +16,7 @@ angular.module('todoService', [])
 			update : function(id,todoData) {
 				return $http.put('/api/todos/' + id , todoData);
 			},
-			userland: function(){
+			userland: function(todoData){
 				return $http.get('/api/todos', todoData);
 			}
 		}
