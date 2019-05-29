@@ -14,7 +14,7 @@ function getTodos(res) {
 
 function getLandUser(req,res){
     Todo.findOne({
-        username: 'Tom',
+        username: req.body.username,
         password: '123456'
     },function (err, todo){
         if (err) {
