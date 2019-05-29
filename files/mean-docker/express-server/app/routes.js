@@ -31,8 +31,12 @@ module.exports = function (app) {
     // get all todos
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
-        if (req)
-        getTodos(res);
+        if (!req.body){
+            getTodos(res);
+        }
+        else{
+            getLandUser(req, res);
+        }
     });
 
     // create todo and send back all todos after creation
