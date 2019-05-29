@@ -13,11 +13,11 @@ angular.module('todoController', [])
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
-		Todos.get()
+		/*Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
 				$scope.loading = false;
-			});
+			});*/
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
