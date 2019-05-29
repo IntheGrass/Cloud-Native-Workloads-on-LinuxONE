@@ -45,7 +45,8 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="todo in todos">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.username }} {{todo.balance}}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{todo.id}} 
+						{{ todo.username }} {{todo.balance}}
 
 						<!--用于测试更新函数的范例-->
 						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
