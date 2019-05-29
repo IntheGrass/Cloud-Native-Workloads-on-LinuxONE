@@ -12,12 +12,26 @@ function getTodos(res) {
     });
 };
 
+function getLandUser(req,res){
+    Todo.findOne({
+        username: req.body.id,
+        password: req.body.password
+    },function (err, todo){
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(todo);
+    });
+};
+
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
     // get all todos
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
+        if (!req)
         getTodos(res);
     });
 
@@ -25,8 +39,9 @@ module.exports = function (app) {
     app.post('/api/todos', function (req, res) {
         // create a todo, information comes from AJAX request from Angular
             Todo.create({
+                id: req.body.id,
                 username: req.body.username,
-                balance: req.body.balance,
+                password: req.body.password,
                 done: false
             }, function (err, todo) {
                 if (err)
@@ -48,7 +63,8 @@ module.exports = function (app) {
         });
     });
     
-    //更新一个todo的存款
+
+    //更新一个todo的存款 接受一个_id和 updateData数据
     app.put('/api/todos/:todo_id', function (req, res) {
         Todo.update({
             //通过ID查询

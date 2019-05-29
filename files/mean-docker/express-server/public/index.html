@@ -10,17 +10,19 @@
 	<title>Node/Angular Todo App</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">--><!-- load bootstrap -->
+	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">-->
+	<link rel="stylesheet" href="css/bootstrap-4.0.0.css" >
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
+		#userContainer 			{ background-color: #fcf8e3; }
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="https://cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -33,7 +35,7 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Hi let us make an app for banks<span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>欢迎来到银行<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST 显示框-->
@@ -47,9 +49,9 @@
 
 						<!--用于测试更新函数的范例-->
 						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
-						ng-model="updateData.balance"> <!--更新存款的输入框，updateData.balance表示即将更新的数字-->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="updateBalance(todo._id)">                  
-							更新用户存款</button>
+						ng-model="formData.updatedBalance"> <!--更新存款的输入框，formData.updatedBalance表示即将更新的数字-->
+						
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="updateBalance(todo._id)">更新用户存款</button>
 					</label>
 				</div>
 
@@ -60,6 +62,59 @@
 
 			</div>
 		</div>
+		<!--实际的前端格式-->
+		<div>
+			<form>
+				<!--注册表单-->
+				<div class="form-group form-inline">
+					<label class="control-label col-1"> 用户名</label>
+					<input type='text' class="form-control input-lg text-center col-3"  placeholder="输入用户名"
+							ng-model="createData.username">
+					<label class="control-label col-1"> 密码</label>
+					<input type='text' class="form-control input-lg text-center col-3"  placeholder="输入密码" 
+							ng-model="createData.password">
+					<button class="btn btn-primary btn-md" ng-click="createTodo()">注册</button>
+				</div>
+				<!--登陆表单-->
+				<div class="form-group form-inline">
+					<label class="control-label col-1"> 用户名</label>
+					<input type='text' class="form-control input-lg text-center col-3" placeholder="输入用户名"
+							ng-model="landData.username">
+					<label class="control-label col-1"> 密码</label>
+					<input type='text' class="form-control input-lg text-center col-3" placeholder="输入密码"
+							ng-model="landData.password">
+					<button class="btn btn-primary btn-md" ng-click="land()">登陆</button>
+				</div>
+			</form>
+		</div>
+		<!--用户窗口-->
+		<div class="contianer" style="background-color: rgba(0, 0, 0, 0.05)">
+			<label class="control-label">用户名:</label> <p>{{ showData.username}}</p>
+			<label class="control-label">余额:</label> <p>{{ showData.balance}}</p>
+			<!--<label class="control-label">欠款</label> <p>{{ showData.balance}}</p>-->
+
+			<!--存款入口-->
+			<div class="form-group form-inline">
+				<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入存款金额" 
+						ng-model="updateData.balance">6
+				<button class="btn btn-primary btn-md" ng-click="updateBalance(todo._id)">存款</button>
+			</div>
+
+			<!--转账入口-->
+			<div class="form-group form-inline">
+					<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入用户ID" 
+					ng-model="updateData.id">
+					<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入转账金额" 
+							ng-model="updateData.balance">
+					<button class="btn btn-primary btn-md" ng-click="transfer(todo._id)">转账</button>
+				</div>
+		</div>
+
+
+
+
+
+
 
 		<!-- FORM TO CREATE TODOS  输入框--> 
 		<div id="todo-form" class="row">
@@ -89,5 +144,12 @@
 			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 		</div>
 	</div>
+	
 </body>
 </html>
+<style>
+.asd{
+	background-color: #fcf8e3;
+	background-color: #212529,
+}
+</style>
