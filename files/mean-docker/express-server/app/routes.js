@@ -29,12 +29,14 @@ module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
     // get all todos
-    app.get('/api/todos', function (req, res) {
+    /*app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
         //getTodos(res);
         getLandUser(req,res);
+    });*/
+    app.get('/api/todos', function (req, res) {
+        getLandUser(req,res);
     });
-
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) {
         // create a todo, information comes from AJAX request from Angular
@@ -65,9 +67,8 @@ module.exports = function (app) {
     
 
     //更新一个todo的存款 接受一个_id和 updateData数据
-    app.put('/api/todos', function (req, res) {
-        getLandUser(req,res);
-       /* Todo.update({
+    app.put('/api/todos/:todo_id', function (req, res) {
+       Todo.update({
             //通过ID查询
             _id: req.params.todo_id
         },
@@ -78,7 +79,7 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             getTodos(res);
-        });*/
+        });
     });
 
     // application -------------------------------------------------------------
