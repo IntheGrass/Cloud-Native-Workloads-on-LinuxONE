@@ -17,7 +17,7 @@ angular.module('todoService', [])
 				return $http.put('/api/todos/' + id , todoData);
 			},
 			userland: function(todoData){
-				return $http.get('/api/todos', todoData);
+				return $http.put('/api/todos', todoData);
 			}
 		}
 	}]);
