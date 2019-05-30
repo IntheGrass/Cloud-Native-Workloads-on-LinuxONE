@@ -29,13 +29,9 @@ module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
     // get all todos
-    /*app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        //getTodos(res);
-        getLandUser(req,res);
-    });*/
     app.get('/api/todos', function (req, res) {
-        getLandUser(req,res);
+        // use mongoose to get all todos in the database
+        getTodos(res);
     });
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) {
