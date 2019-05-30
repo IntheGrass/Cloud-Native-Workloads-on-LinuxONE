@@ -97,17 +97,17 @@
 			<!--存款入口-->
 			<div class="form-group form-inline">
 				<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入存款金额" 
-						ng-model="updateData.balance">
-				<button class="btn btn-primary btn-md" ng-click="updateBalance(todo._id)">存款</button>
+						ng-model="depositData.balance">
+				<button class="btn btn-primary btn-md" ng-click="deposit(showData.id,showData.balance)">存款</button>
 			</div>
 
 			<!--转账入口-->
 			<div class="form-group form-inline">
 					<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入用户ID" 
-					ng-model="updateData.id">
+					ng-model="transferData.id">
 					<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入转账金额" 
-							ng-model="updateData.balance">
-					<button class="btn btn-primary btn-md" ng-click="transfer(todo._id)">转账</button>
+							ng-model="transferData.balance">
+					<button class="btn btn-primary btn-md" ng-click="transfer(showData.id)">转账</button>
 				</div>
 		</div>
 

@@ -2,22 +2,23 @@ angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
-		$scope.formData = {};
 		$scope.idLocation = 0;
-		$scope.createData = {};
-		$scope.landData = {};
-		$scope.showData = {username: 'Peter', balance: 0};
+		$scope.createData = {};//储存注册信息
+		$scope.landData = {}; //储存登陆信息
+		$scope.showData = {};//储存当前已登陆信息
 		$scope.todos = [];
+		$scope.depositData = {};//储存存款信息
+		$scope.transferData = {};//储存转账信息
 		$scope.updateData = {};
 		$scope.loading = true;
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
-		/*Todos.get()
+		Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
 				$scope.loading = false;
-			});*/
+			});
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
@@ -77,21 +78,38 @@ angular.module('todoController', [])
 					$scope.landData = {};
 					$scope.showData = data;
 			});
-		}
-		//通过删除的方法更新用户存款（没用了）
-		/*$scope.updateBalance2 = function(id,name) {
+		};
+		$scope.deposit = function(id,oldBalance){
 			$scope.loading = true;
-			$scope.updateData.username = name;
-			Todos.delete(id)
-				.success(function(data) {
-					$scope.todos = data; // assign our new list of todos
-				});
-			Todos.create($scope.updateData)
-				// if successful creation, call our get function to get all the new todos
-				.success(function(data) {
-					$scope.loading = false;
-					$scope.formData = {}; // clear the form so our user is ready to enter another
-					$scope.todos = data; // assign our new list of todos
-				});
-		};*/
+			$scope.updateData.balance= $scope.depositData.balance+ oldBalance;
+
+			Todos.update(todos[id]._id,$scope.updateData)
+				.success(function(data){
+				$scope.loading = false;
+				$scope.depositData = {};
+				$scope.todos = data;
+				$scope.showData = todos[fromID]; //更新当前登陆的用户的值
+			});
+		};
+
+		$scope.transfer = function(fromID){
+			$scope.loading = true;
+
+			//更新转账者的数据
+			$scope.updateData.balance = $scope.showData.balance - $scope.transferData.balance;
+			Todos.update(todos[fromID]._id,$scope.updateData)
+				.success(function(data){
+				$scope.todos = data;
+			});
+			$scope.updateData.balance = todos[$scope.transferData.id].balance + $scope.transferData.balance;//计算增加后的余额
+			//更新被转账者的数据
+			Todos.update(todos[$scope.transferData.id]._id,$scope.updateData)
+				.success(function(data){
+				$scope.loading = false;
+				$scope.transferData = {};
+				$scope.todos = data;
+				$scope.showData = todos[fromID];
+			});
+		};
+
 	}]);
