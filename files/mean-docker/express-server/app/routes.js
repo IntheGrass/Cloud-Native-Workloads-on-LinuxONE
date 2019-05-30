@@ -12,10 +12,10 @@ function getTodos(res) {
     });
 };
 
-function getLandUser(tousername,topassword,res){
+function getLandUser(req,res){
     Todo.findOne({
-        username: tousername,
-        password: topassword
+        username: req.body.username,
+        password: req.body.password
     },function (err, todo){
         if (err) {
             res.send(err);
@@ -32,7 +32,7 @@ module.exports = function (app) {
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
         //getTodos(res);
-        getLandUser(req.body.username,req.body.password,res);
+        getLandUser(req,res);
     });
 
     // create todo and send back all todos after creation
@@ -66,7 +66,8 @@ module.exports = function (app) {
 
     //更新一个todo的存款 接受一个_id和 updateData数据
     app.put('/api/todos/:todo_id', function (req, res) {
-        Todo.update({
+        getLandUser(req,res);
+       /* Todo.update({
             //通过ID查询
             _id: req.params.todo_id
         },
@@ -77,7 +78,7 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             getTodos(res);
-        });
+        });*/
     });
 
     // application -------------------------------------------------------------
