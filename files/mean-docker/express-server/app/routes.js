@@ -65,7 +65,7 @@ module.exports = function (app) {
     
 
     //更新一个todo的存款 接受一个_id和 updateData数据
-    app.put('/api/todos/:todo_id', function (req, res) {
+    app.put('/api/todos', function (req, res) {
         getLandUser(req,res);
        /* Todo.update({
             //通过ID查询
