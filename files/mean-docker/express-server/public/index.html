@@ -77,7 +77,7 @@
 					<button class="btn btn-primary btn-md" ng-click="createTodo()">注册</button>
 				</div>
 				<!--登陆表单-->
-				<div class="form-group form-inline" >
+				<div class="form-group form-inline" ng-show="!isLand">
 					<label class="control-label col-1"> 用户名</label>
 					<input type='text' class="form-control input-lg text-center col-3" placeholder="输入用户名"
 							ng-model="landData.username">
