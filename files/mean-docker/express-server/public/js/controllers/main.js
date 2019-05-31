@@ -6,11 +6,12 @@ angular.module('todoController', [])
 		$scope.createData = {};//储存注册信息
 		$scope.landData = {}; //储存登陆信息
 		$scope.showData = {};//储存当前已登陆信息
-		$scope.todos = [];
+		$scope.todos = [];//储存所有用户的信息
 		$scope.depositData = {};//储存存款信息
 		$scope.transferData = {};//储存转账信息
 		$scope.updateData = {};
 		$scope.loading = true;
+		$scope.isLand = false;
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -48,7 +49,6 @@ angular.module('todoController', [])
 		// delete a todo after checking it
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
-
 			Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
@@ -75,10 +75,19 @@ angular.module('todoController', [])
 			Todos.userland($scope.landData)
 				.success(function(data){
 					$scope.loading = false;
+					$scope.isLand = true;
 					$scope.landData = {};
 					$scope.showData = data;
 			});
 		};
+
+		//注销
+		$scope.cancel() = function(){
+			$scope.isLand = false;
+			$scope.showData = {};
+		};
+
+		//存款
 		$scope.deposit = function(id,oldBalance){
 			$scope.loading = true;
 			$scope.updateData.balance= $scope.depositData.balance+ oldBalance;
@@ -92,6 +101,7 @@ angular.module('todoController', [])
 			});
 		};
 
+		//转账
 		$scope.transfer = function(fromID){
 			$scope.loading = true;
 

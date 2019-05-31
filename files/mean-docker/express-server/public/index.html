@@ -10,19 +10,21 @@
 	<title>Node/Angular Todo App</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<!--<link rel="stylesheet" href="css/bootstrap-4.0.0.css" >-->
+	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">--><!-- load bootstrap -->
+	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">-->
+	<link rel="stylesheet" href="css/bootstrap-4.0.0.css" >
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
+		#todo-list 				{ margin-bottom:30px;}
 		#todo-form 	 			{ margin-bottom:50px; }
+		button					{ margin-left:30px;}
+		#cancelButton			{ margin-top:20px;	margin-bottom:20px;}
 		#userContainer 			{ background-color: #fcf8e3; }
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="https://cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -39,23 +41,21 @@
 		</div>
 
 		<!-- TODO LIST 显示框-->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{todo.id}} 
-						{{ todo.username }} {{todo.balance}}
-
-						<!--用于测试更新函数的范例-->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's go here" 
-						ng-model="formData.updatedBalance"> <!--更新存款的输入框，formData.updatedBalance表示即将更新的数字-->
-						
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="updateBalance(todo._id)">更新用户存款</button>
-					</label>
-				</div>
-
+		<div id="todo-list" >
+			<div>
+				<table class="text-center">
+					<tr>
+						<th>用户ID</th>
+						<th>用户名</th>
+						<th>用户余额</th>
+					</tr>
+					<tr  ng-repeat="todo in todos">
+						<!--<input type="checkbox" ng-click="deleteTodo(todo._id)" >-->
+						<td >{{todo.id}}</td>
+						<td >{{todo.username}}</td>
+						<td >{{todo.balance}}</td>
+					</tr>
+				</table>
 				<!--加载圈-->
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
@@ -77,7 +77,7 @@
 					<button class="btn btn-primary btn-md" ng-click="createTodo()">注册</button>
 				</div>
 				<!--登陆表单-->
-				<div class="form-group form-inline">
+				<div class="form-group form-inline" ng-show="!island">
 					<label class="control-label col-1"> 用户名</label>
 					<input type='text' class="form-control input-lg text-center col-3" placeholder="输入用户名"
 							ng-model="landData.username">
@@ -89,11 +89,13 @@
 			</form>
 		</div>
 		<!--用户窗口-->
-		<div class="contianer" style="background-color: rgba(0, 0, 0, 0.05)">
+		<div class="contianer" style="background-color: rgba(0, 0, 0, 0.05)" ng-show="island"> 
 			<label class="control-label">用户名:</label> <p>{{ showData.username}}</p>
 			<label class="control-label">余额:</label> <p>{{ showData.balance}}</p>
 			<!--<label class="control-label">欠款</label> <p>{{ showData.balance}}</p>-->
-
+			<div ng-show="island" id="cancelButton">
+				<button class="btn btn-primary btn-md" ng-click="cancel()">注销</button>
+			</div>
 			<!--存款入口-->
 			<div class="form-group form-inline">
 				<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入存款金额" 
@@ -108,7 +110,7 @@
 					<input type='number' class="form-control input-lg text-center col-3"  placeholder="输入转账金额" 
 							ng-model="transferData.balance">
 					<button class="btn btn-primary btn-md" ng-click="transfer(showData.id)">转账</button>
-				</div>
+			</div>
 		</div>
 		<!--更新实例-->
 		<div class="text-center text-muted">
