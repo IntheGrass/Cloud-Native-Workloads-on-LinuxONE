@@ -89,11 +89,11 @@
 			</form>
 		</div>
 		<!--用户窗口-->
-		<div class="contianer" style="background-color: rgba(0, 0, 0, 0.05)" ng-show="island"> 
+		<div class="contianer" style="background-color: rgba(0, 0, 0, 0.05)" ng-show="isLand"> 
 			<label class="control-label">用户名:</label> <p>{{ showData.username}}</p>
 			<label class="control-label">余额:</label> <p>{{ showData.balance}}</p>
 			<!--<label class="control-label">欠款</label> <p>{{ showData.balance}}</p>-->
-			<div ng-show="island" id="cancelButton">
+			<div ng-show="isLand" id="cancelButton">
 				<button class="btn btn-primary btn-md" ng-click="cancel()">注销</button>
 			</div>
 			<!--存款入口-->
