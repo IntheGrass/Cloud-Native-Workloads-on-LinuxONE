@@ -108,7 +108,7 @@ angular.module('todoController', [])
 				$scope.loading = false;
 				$scope.transferData = {};
 				$scope.todos = data;
-				$scope.showData = todos[fromID];
+				$scope.showData = $scope.todos[fromID];
 			});
 		};
 
