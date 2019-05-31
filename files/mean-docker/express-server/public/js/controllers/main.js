@@ -88,7 +88,7 @@ angular.module('todoController', [])
 				$scope.loading = false;
 				$scope.depositData = {};
 				$scope.todos = data;
-				$scope.showData = $scope.todos[fromID]; //更新当前登陆的用户的值
+				$scope.showData = $scope.todos[id]; //更新当前登陆的用户的值
 			});
 		};
 
