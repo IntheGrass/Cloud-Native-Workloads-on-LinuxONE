@@ -105,8 +105,8 @@ angular.module('todoController', [])
 				$scope.todos = data;
 				$scope.showData = $scope.todos[fromID];
 			});
-			$scope.updateData.balance = $scope.todos[$scope.transferData.id].balance + $scope.transferData.balance;//计算增加后的余额
-			console.log($scope.updateData.balance);
+			//$scope.updateData.balance = $scope.todos[$scope.transferData.id].balance + $scope.transferData.balance;//计算增加后的余额
+			//console.log($scope.updateData.balance);
 			//更新被转账者的数据
 			/*Todos.update($scope.todos[$scope.transferData.id]._id,$scope.updateData)
 				.success(function(data){
