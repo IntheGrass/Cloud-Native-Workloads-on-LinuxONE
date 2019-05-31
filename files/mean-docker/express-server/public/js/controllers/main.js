@@ -83,12 +83,12 @@ angular.module('todoController', [])
 			$scope.loading = true;
 			$scope.updateData.balance= $scope.depositData.balance+ oldBalance;
 
-			Todos.update(todos[id]._id,$scope.updateData)
+			Todos.update($scope.todos[id]._id,$scope.updateData)
 				.success(function(data){
 				$scope.loading = false;
 				$scope.depositData = {};
 				$scope.todos = data;
-				$scope.showData = todos[fromID]; //更新当前登陆的用户的值
+				$scope.showData = $scope.todos[fromID]; //更新当前登陆的用户的值
 			});
 		};
 
@@ -97,13 +97,13 @@ angular.module('todoController', [])
 
 			//更新转账者的数据
 			$scope.updateData.balance = $scope.showData.balance - $scope.transferData.balance;
-			Todos.update(todos[fromID]._id,$scope.updateData)
+			Todos.update($scope.todos[fromID]._id,$scope.updateData)
 				.success(function(data){
 				$scope.todos = data;
 			});
-			$scope.updateData.balance = todos[$scope.transferData.id].balance + $scope.transferData.balance;//计算增加后的余额
+			$scope.updateData.balance = $scope.todos[$scope.transferData.id].balance + $scope.transferData.balance;//计算增加后的余额
 			//更新被转账者的数据
-			Todos.update(todos[$scope.transferData.id]._id,$scope.updateData)
+			Todos.update($scope.todos[$scope.transferData.id]._id,$scope.updateData)
 				.success(function(data){
 				$scope.loading = false;
 				$scope.transferData = {};
