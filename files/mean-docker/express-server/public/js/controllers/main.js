@@ -97,6 +97,7 @@ angular.module('todoController', [])
 
 			//更新转账者的数据
 			$scope.updateData.balance = $scope.showData.balance - $scope.transferData.balance;
+			console.log($scope.updateData.balance);
 			Todos.update($scope.todos[fromID]._id,$scope.updateData)
 				.success(function(data){
 				$scope.todos = data;
