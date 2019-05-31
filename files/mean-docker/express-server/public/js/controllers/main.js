@@ -82,7 +82,7 @@ angular.module('todoController', [])
 		};
 
 		//注销
-		$scope.cancel() = function(){
+		$scope.cancel = function(){
 			$scope.isLand = false;
 			$scope.showData = {};
 		};
